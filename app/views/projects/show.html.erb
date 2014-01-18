@@ -1,8 +1,8 @@
-<h1><%= @project.project_no %></h1>
-<p><%= @project.title %></p>
-<p><%= @project.client_name %></p>
+<h1><b>Project Number:</b> <%= @project.project_no %></h1>
+<p>Project Name: <%= @project.title %></p>
+<p>Client Name: <%= @project.client_name %></p>
+<p>Description:</p>
 <p><%= @project.description %></p>
-<p><%= @project.status %></p>
+<p>Status: <%= @project.status %></p>
 <%= link_to 'Project Database Home', projects_path, class: "btn btn-primary" %>
 <%= link_to 'Edit Project', edit_project_path, class: "btn btn-primary" %>
-   <%= link_to "Delete Entry", @project, method: :delete, data: {confirm: 'Are you sure?'} %>

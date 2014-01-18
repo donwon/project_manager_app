@@ -21,7 +21,7 @@ ProjectManagerApp::Application.routes.draw do
   #   resources :products do
   #     member do
   #       get 'short'
-  #       post 'toggle'
+  #       project 'toggle'
   #     end
   #
   #     collection do
@@ -45,9 +45,9 @@ ProjectManagerApp::Application.routes.draw do
 
   # Example resource route with concerns:
   #   concern :toggleable do
-  #     post 'toggle'
+  #     project 'toggle'
   #   end
-  #   resources :posts, concerns: :toggleable
+  #   resources :projects, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:

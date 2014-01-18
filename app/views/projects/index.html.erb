@@ -4,20 +4,30 @@
 	<thead>
 		<tr>
 			<th>Don's PM Database</th>
-			<th>Stuff</th>
+			<th></th>
 
 		</tr>
 		
 	</thead>
 
 	<tbody>
+		<th>Project Number</th>
+		<th>Client Name</th>
+		<th>Project Name</th>
+		<th>Project Description</th>
+		<th>Project Status</th>
+
 		<% @projects.each do |project| %>
+
 		<tr>
 			<td><%= project.project_no %></td>
 			<td><%= project.client_name %></td>
 			<td><%= project.title %></td>
 			<td><%= project.description %></td>
 			<td><%= project.status %></td>
+
+			<td><%= link_to "Edit", edit_project_path(project)%></td>
+			<td><%= link_to "Show", project_path(project) %></td>
   		
   		 <% end %>
 
