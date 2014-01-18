@@ -1,0 +1,36 @@
+<h1> Project Management Data Base - DISCUSSIONS</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Don's PM Discussions</th>
+			<th></th>
+
+		</tr>
+		
+	</thead>
+
+	<tbody>
+		<th>Title</th>
+		<th>Body</th>
+
+
+		<% @dicussions.each do |i| %>
+
+		<tr>
+			<td><%= i.title %></td>
+			<td><%= i.body %></td>
+
+
+
+			<td><%= link_to "Edit", edit_discussion_path(i)%></td>
+			<td><%= link_to "Show", discussion_path(i) %></td>
+  		
+  		 <% end %>
+   </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discussion', new_discussion_path, class: "btn btn-primary" %>
+<%= link_to 'Project Database', projects_path, class: "btn btn-primary" %>
