@@ -28,13 +28,13 @@ def update
     
     #is the a for loop I can implement to do this?
 
-	@project.project_no = params[:project][:project_no]
-	@project.title = params[:project][:title]
-	@project.client_name = params[:project][:client_name]
-	@project.description = params[:project][:description]
-	@project.status = params[:project][:status]
+	# @project.project_no = params[:project][:project_no]
+	# @project.title = params[:project][:title]
+	# @project.client_name = params[:project][:client_name]
+	# @project.description = params[:project][:description]
+	# @project.status = params[:project][:status]
 
-	@project.save
+	@project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status])
 
 	redirect_to projects_path
 end

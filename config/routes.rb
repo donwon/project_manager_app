@@ -1,7 +1,12 @@
 ProjectManagerApp::Application.routes.draw do
 
   resources :projects
-  resources :discussions
+  resources :discussions do
+    get :like, on: :member
+  end
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

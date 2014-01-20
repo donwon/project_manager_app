@@ -13,6 +13,7 @@
 	<tbody>
 		<th>Title</th>
 		<th>Body</th>
+		<th>Likes</th>
 
 
 		<% @dicussions.each do |i| %>
@@ -20,11 +21,13 @@
 		<tr>
 			<td><%= i.title %></td>
 			<td><%= i.body %></td>
+			<td><%= i.counter %></td>
 
 
 
 			<td><%= link_to "Edit", edit_discussion_path(i)%></td>
 			<td><%= link_to "Show", discussion_path(i) %></td>
+			<td><%= link_to "Like", like_discussion_path(i) %></td>
   		
   		 <% end %>
    </tbody>
