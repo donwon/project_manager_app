@@ -4,7 +4,9 @@ before_action :set_project, only: [:show,:edit,:update]
 
 
 def index
-	@projects = Project.all
+	@projects_recent = Project.order("created_at DESC")[0..2]
+	@projects_by_hits = Project.order("hit_counter DESC")
+
 end
 
 def new
@@ -16,13 +18,15 @@ def create
 	if @project.save
 		redirect_to projects_path, notice: "Project has been saved to database"
 	else
-	render :new, alert: "Error saving record to database"
+	flash.now[:alert]="Error saving record to database"
+	render :new
 	end
 
 end
 
 def show
-
+ @project.hit_counter += 1
+ @project.save
 end
 
 def edit

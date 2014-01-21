@@ -1,9 +1,11 @@
 <h1> Project Management Data Base </h1>
-
-<table>
+<p style="text-align:right"><%= link_to 'New Project', new_project_path, class: "btn btn-primary" %>
+<%= link_to 'Discussions', discussions_path, class: "btn btn-primary" %></p>
+<h2><font color = "blue"> 3 Most Recent Projects</font></h3>
+<table align = "center">
 	<thead>
 		<tr>
-			<th>Don's PM Database</th>
+
 			<th></th>
 
 		</tr>
@@ -16,8 +18,9 @@
 		<th>Project Name</th>
 		<th>Project Description</th>
 		<th>Project Status</th>
+		<th>View Count</th>
 
-		<% @projects.each do |project| %>
+		<% @projects_recent.each do |project| %>
 
 		<tr>
 			<td><%= project.project_no %></td>
@@ -25,21 +28,54 @@
 			<td><%= project.title %></td>
 			<td><%= project.description.truncate(140) %></td>
 			<td><%= project.status %></td>
+			<td><%= project.hit_counter %></td>
 
 			<td><%= link_to "Edit", edit_project_path(project)%></td>
 			<td><%= link_to "Show", project_path(project) %></td>
   		
   		 <% end %>
-
-
 	
+   </tbody>
+</table>
 
+<hr>
+		<h2><font color = "blue"> Ordered by View Count</font></h2>
+<table align="center">
+	<thead>
+		<tr>
+	
+			<th></th>
 
+		</tr>
+		
+	</thead>
 
+	<tbody>
+		<th>Project Number</th>
+		<th>Client Name</th>
+		<th>Project Name</th>
+		<th>Project Description</th>
+		<th>Project Status</th>
+		<th>View Count</th>
+
+		<% @projects_by_hits.each do |project| %>
+
+		<tr>
+			<td><%= project.project_no %></td>
+			<td><%= project.client_name %></td>
+			<td><%= project.title %></td>
+			<td><%= project.description.truncate(140) %></td>
+			<td><%= project.status %></td>
+			<td><%= project.hit_counter %></td>
+
+			<td><%= link_to "Edit", edit_project_path(project)%></td>
+			<td><%= link_to "Show", project_path(project) %></td>
+  		
+  		 <% end %>
+	
    </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Project', new_project_path, class: "btn btn-primary" %>
-<%= link_to 'Discussions', discussions_path, class: "btn btn-primary" %>
+
