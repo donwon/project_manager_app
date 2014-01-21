@@ -1,19 +1,4 @@
 <h1>Edit Your Post</h1>
 <br>
-
-<%= form_for(@discussion) do |f| %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_field :body %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  <%= link_to "Delete Entry", discussion_path, method: 'DELETE', confirm: 'Are you sure?' %>
-  </div>
-<% end %>
+<%= render "form"%>
+<%= link_to "Delete Entry", discussion_path, method: 'DELETE', confirm: 'Are you sure?' %>

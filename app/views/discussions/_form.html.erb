@@ -1,0 +1,22 @@
+<%= form_for(@discussion) do |f| %>
+<% if @discussion.errors.any? %>
+<ul> 
+  <% @discussion.errors.full_messages.each do |msg| %>
+  <li><font color = "red" ><%= msg %></font></li>
+  <%end%>
+</ul>
+<%end%>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  
+  </div>
+<% end %>

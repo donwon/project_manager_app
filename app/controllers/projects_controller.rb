@@ -16,7 +16,9 @@ end
 def create
 	@project = Project.new params.require(:project).permit([:project_no, :client_name, :title, :description, :status])
 	if @project.save
+		#flash.now[:notice]="Project has been saved to database"
 		redirect_to projects_path, notice: "Project has been saved to database"
+		
 	else
 	flash.now[:alert]="Error saving record to database"
 	render :new
@@ -35,9 +37,12 @@ end
 
 def update  
 		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status])
+			#flash.now[:notice]="Project has been updated"
 			redirect_to projects_path, notice: "Project has been updated"
+
 		else
-			render :edit, alert: "Error updating record to database"
+			flash.now[:alert] = "Error updating record to database"
+			render :edit
 		end  
 
 	#is the a for loop I can implement to do this?

@@ -1,9 +1,10 @@
 class DiscussionsController < ApplicationController
 
+before_action :set_discussion, only: [:show, :edit,:update]
+
 def index
 	@dicussions = Discussion.all
 	#Rails.logger.info session[:project_ids]
-	
 
 end
 
@@ -12,26 +13,31 @@ def new
 end
 
 def create
-	discussion = Discussion.new params.require(:discussion).permit([:title,:body])
-	discussion.save
+	@discussion = Discussion.new params.require(:discussion).permit([:title,:body])
+	@discussion.save
 	redirect_to discussions_path
 end
 
 def show
-	@discussion = Discussion.find(params[:id])
+	#@discussion = Discussion.find(params[:id])
 	#session[:project_ids] = params[:id]
 end
 
 def edit
-	@discussion = Discussion.find(params[:id])
+	#@discussion = Discussion.find(params[:id])
 end
 
 def update
-	discussion = Discussion.find(params[:id])
-	discussion.title = params[:discussion][:title]
-	discussion.body = params[:discussion][:body]
-	discussion.save
-	redirect_to discussions_path
+	
+	# discussion.title = params[:discussion][:title]
+	# discussion.body = params[:discussion][:body]
+	@discussion.update_attributes params.require(:discussion).permit([:title,:body])
+	if @discussion.save
+		redirect_to discussions_path, notice: "Update Success"
+	else
+		flash.now[:alert] = "Error updating records"
+		render :edit
+	end
 
 end
 
@@ -65,5 +71,11 @@ end
 
  redirect_to discussions_path
 end
+
+def set_discussion
+	@discussion = Discussion.find(params[:id])
+end
+
+
 
 end
