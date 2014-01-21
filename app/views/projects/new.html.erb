@@ -1,25 +1,4 @@
 <h1> Add a New Project </h1>
 <br>
 
-<%= form_for @project do |f| %>
-	<%= f.label :project_no %>
-	<%= f.text_field :project_no %>
-<br>
-	<%= f.label :client_name %>
-	<%= f.text_field :client_name %>
-<br>
-	<%= f.label :title, "Project Name" %>
-	<%= f.text_field :title %>
-<br>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-<br>
-	<%= f.label :status %>
-	<%= f.text_field :status%>
-<br>
-
-
-<%= f.submit %>
-
-<% end %>
-
+<%= render "project_form" %>
