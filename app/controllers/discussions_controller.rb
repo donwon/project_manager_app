@@ -14,8 +14,13 @@ end
 
 def create
 	@discussion = Discussion.new params.require(:discussion).permit([:title,:body])
-	@discussion.save
-	redirect_to discussions_path
+	if @discussion.save
+		redirect_to discussions_path, notice: "New Discussion Added to database"
+	else
+		flash.now[:alert] = "Error in creating new discussion"
+		render :new
+	end
+	
 end
 
 def show
