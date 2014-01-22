@@ -26,11 +26,18 @@
 
 
 
-			<td><%= link_to "Edit", edit_discussion_path(i)%></td>
+			<td><%= link_to "Edit", edit_discussion_path(i) %></td>
 			<td><%= link_to "Show", discussion_path(i) %></td>
-			<td><%= link_to "Like", like_discussion_path(i) %></td>
-  		
+
+				<% if session[:discussion_ids].present? && session[:discussion_ids].include?(i.id.to_s) %>
+					<td><%= link_to "Like", "javascript:void(0);", disabled: "disabled", class: "btn btn-default btn-sm"%></td>				
+ 			 	<% else %>
+					<td><button type="button" class="btn btn-default btn-sm">
+	 			 	<span class="glyphicon glyphicon-thumbs-up"></span>
+	 			 	<%= link_to "Like", like_discussion_path(i) %></button></td>
   		 <% end %>
+
+  		 	<% end %>
    </tbody>
 </table>
 

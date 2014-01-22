@@ -4,8 +4,19 @@ before_action :set_project, only: [:show,:edit,:update]
 
 
 def index
+	#puts Project.hash_example
+	#Project.generate_random_project(5)
 	@projects_recent = Project.order("created_at DESC")[0..2]
 	@projects_by_hits = Project.order("hit_counter DESC")
+
+	#find the id's of recent projects and save it to variable
+	recent_ids = []
+	@projects_recent.each {|x| recent_ids << x.id }
+
+	Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+	Rails.logger.info recent_ids
+	@projects_left_over = @projects_by_hits.select { |x| !recent_ids.include?(x.id) }
+	@projects_w_long_title = Project.long_titled
 
 end
 
@@ -61,6 +72,10 @@ def destroy
 	@project = Project.find(params[:id])
 	@project.destroy
 	redirect_to projects_path
+end
+
+def favorites
+  redirect_to projects_path
 end
 
 private

@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
 
-before_action :set_discussion, only: [:show, :edit,:update]
+before_action :set_discussion, only: [:show, :edit,:update, :flag]
 
 def index
 	@dicussions = Discussion.all
@@ -53,16 +53,18 @@ def destroy
 end
 
 def like
-	session[:project_ids] ||= []
+	session[:discussion_ids] ||= []
 	@discussion = Discussion.find(params[:id])
 	@discussion.counter ||=0
 
-unless session[:project_ids].include? params[:id]
-  @discussion.counter += 1 
-  session[:project_ids] << params[:id]
-  @discussion.save
-end
-
+	if session[:discussion_ids].include? params[:id]
+		redirect_to discussions_path, alert: "Liked already"
+	else
+		@discussion.counter += 1 
+	  session[:discussion_ids] << params[:id]
+	  @discussion.save
+	  redirect_to discussions_path, notice: "Thank you for liking this post"
+	end
 
 	#make new hash to count the project_ids stored in session array
 	# @like_count = Hash.new(0)
@@ -72,11 +74,14 @@ end
 	#Rails.logger.info @number_of_likes
 	#Rails.logger.info '>>>above is number of likes for this id>>>>>>>>>>>>>>>>>>>'
 
-
-
- redirect_to discussions_path
+ 
 end
 
+def flag
+	redirect_to discussions_path
+end
+
+private
 def set_discussion
 	@discussion = Discussion.find(params[:id])
 end

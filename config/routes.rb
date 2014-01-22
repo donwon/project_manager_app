@@ -1,8 +1,12 @@
 ProjectManagerApp::Application.routes.draw do
 
-  resources :projects
+  resources :projects do
+    get :favorites, on: :collection
+  end
+
   resources :discussions do
     get :like, on: :member
+    post :flag, on: :member
   end
 
 
