@@ -1,0 +1,35 @@
+    <table align = "center">
+    <tbody>
+    <thead>
+    <tr>
+
+      <th></th>
+
+    </tr>
+    
+  </thead>
+    <th>Project Number</th>
+    <th>Client Name</th>
+    <th>Project Name</th>
+    <th>Project Description</th>
+    <th>Project Status</th>
+    <th>View Count</th>
+
+<% @create_project_table.each do |project| %>
+
+    <tr>
+      <td><%= project.project_no %></td>
+      <td><%= project.client_name %></td>
+      <td><%= project.title %></td>
+      <td><%= project.description.truncate(140) %></td>
+      <td><%= project.status %></td>
+      <td><%= project.hit_counter %></td>
+
+      <td><%= link_to "Edit", edit_project_path(project)%></td>
+      <td><%= link_to "Show", project_path(project) %></td>
+      
+       <% end %>
+
+          </tbody>
+</table>
+<hr>

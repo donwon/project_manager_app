@@ -4,117 +4,18 @@
 
 
 <h2><font color = "blue"> 3 Most Recent Projects</font></h3>
-<table align = "center">
-	<thead>
-		<tr>
+		<% @create_project_table = @projects_recent %>
+		<%= render "project_table" %>
 
-			<th></th>
 
-		</tr>
-		
-	</thead>
+<h2><font color = "blue"> Ordered by View Count</font></h2>
+		<% @create_project_table = @projects_left_over.each %>
+		<%= render "project_table" %>
 
-	<tbody>
-		<th>Project Number</th>
-		<th>Client Name</th>
-		<th>Project Name</th>
-		<th>Project Description</th>
-		<th>Project Status</th>
-		<th>View Count</th>
-
-		<% @projects_recent.each do |project| %>
-
-		<tr>
-			<td><%= project.project_no %></td>
-			<td><%= project.client_name %></td>
-			<td><%= project.title %></td>
-			<td><%= project.description.truncate(140) %></td>
-			<td><%= project.status %></td>
-			<td><%= project.hit_counter %></td>
-
-			<td><%= link_to "Edit", edit_project_path(project)%></td>
-			<td><%= link_to "Show", project_path(project) %></td>
-  		
-  		 <% end %>
-	
-   </tbody>
-</table>
-
-<hr>
-		<h2><font color = "blue"> Ordered by View Count</font></h2>
-<table align="center">
-	<thead>
-		<tr>
-	
-			<th></th>
-
-		</tr>
-		
-	</thead>
-
-	<tbody>
-		<th>Project Number</th>
-		<th>Client Name</th>
-		<th>Project Name</th>
-		<th>Project Description</th>
-		<th>Project Status</th>
-		<th>View Count</th>
-
-		<% @projects_left_over.each do |project| %>
-
-		<tr>
-			<td><%= project.project_no %></td>
-			<td><%= project.client_name %></td>
-			<td><%= project.title %></td>
-			<td><%= project.description.truncate(140) %></td>
-			<td><%= project.status %></td>
-			<td><%= project.hit_counter %></td>
-
-			<td><%= link_to "Edit", edit_project_path(project)%></td>
-			<td><%= link_to "Show", project_path(project) %></td>
-  		
-  		 <% end %>
-	
-   </tbody>
-</table>
-
-<br>
-<hr>
 <h2><font color = "blue"> long titled projects </font></h3>
-<table align = "center">
-	<thead>
-		<tr>
 
-			<th></th>
-
-		</tr>
+		<% @create_project_table = @projects_w_long_title %>
+		<%= render "project_table" %>
 		
-	</thead>
-
-	<tbody>
-		<th>Project Number</th>
-		<th>Client Name</th>
-		<th>Project Name</th>
-		<th>Project Description</th>
-		<th>Project Status</th>
-		<th>View Count</th>
-
-		<% @projects_w_long_title.each do |project| %>
-
-		<tr>
-			<td><%= project.project_no %></td>
-			<td><%= project.client_name %></td>
-			<td><%= project.title %></td>
-			<td><%= project.description.truncate(140) %></td>
-			<td><%= project.status %></td>
-			<td><%= project.hit_counter %></td>
-
-			<td><%= link_to "Edit", edit_project_path(project)%></td>
-			<td><%= link_to "Show", project_path(project) %></td>
-  		
-  		 <% end %>
-	
-   </tbody>
-</table>
 
 
