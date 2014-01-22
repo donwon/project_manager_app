@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
 
-before_action :set_project, only: [:show, :edit, :update]
+before_action :require_login, only:[:new, :edit,:update, :create]
 before_action :print_to_console, except: [:index , :new, :create] 
+
+before_action :set_project, only: [:show, :edit, :update]
 
 def index
 	#puts Project.hash_example
@@ -81,6 +83,14 @@ def favorites
 end
 
 private
+
+def require_login
+	if session[:logged_in?] == false
+	redirect_to projects_path, alert: "You Must Log in to Add/Modify Projects, feel free to post a Discussion"
+	end
+end
+
+
 #pints to console the ids of project loaded
 def print_to_console
 	@project = Project.find(params[:id])

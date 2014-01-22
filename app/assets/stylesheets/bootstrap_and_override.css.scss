@@ -3,7 +3,7 @@
 /* universal */
 #nav_ul li{
   display: inline-block;
-  list-style-type: none;
+  
 }
 
 html {
@@ -12,6 +12,7 @@ html {
 
 body {
   padding-top: 60px;
+
 }
 
 section {
@@ -87,7 +88,7 @@ p {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: gray;
     text-decoration: none;
   }
 }
@@ -99,9 +100,9 @@ footer {
   border-top: 1px solid #eaeaea;
   color: gray;
   a {
-    color: gray;
+    color: silver;
     &:hover {
-      color: gray;
+      color: white;
     }
   }
   small {

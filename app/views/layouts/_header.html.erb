@@ -4,9 +4,19 @@
           <%= link_to "Don's Project Database", '#', id: "logo" %>
           <nav>
             <ul class="nav pull-right" id="nav_ul">
-              <li><%= link_to "Home",    '#' %></li>
+              <li><%= link_to "Home",    projects_path %></li>
               <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+
+
+              <% if session[:logged_in?] == false %>
+              <li><%= link_to "Sign in", login_users_path %></li>
+              <% else %>
+              <li><%= link_to "Log Out", logout_users_path %></li>
+              <% end %>
+
+
+
+
             </ul>
           </nav>
         </div>

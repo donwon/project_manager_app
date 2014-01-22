@@ -9,6 +9,11 @@ ProjectManagerApp::Application.routes.draw do
     post :flag, on: :member
   end
 
+  resources :users do
+    get :login, on: :collection
+    get :logout, on: :collection
+  end
+
 
 
 
@@ -16,7 +21,7 @@ ProjectManagerApp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'projects#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
