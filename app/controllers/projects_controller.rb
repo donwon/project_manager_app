@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
-before_action :set_project, only: [:show,:edit,:update]
-
+before_action :set_project, only: [:show, :edit, :update]
+before_action :print_to_console, except: [:index , :new, :create] 
 
 def index
 	#puts Project.hash_example
@@ -15,6 +15,7 @@ def index
 
 	Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 	Rails.logger.info recent_ids
+
 	@projects_left_over = @projects_by_hits.select { |x| !recent_ids.include?(x.id) }
 	@projects_w_long_title = Project.long_titled
 
@@ -25,7 +26,8 @@ def new
 end
 
 def create
-	@project = Project.new params.require(:project).permit([:project_no, :client_name, :title, :description, :status])
+	
+	@project = Project.new params.require(:project).permit([:project_no, :client_name, :title, :description, :status, :terms_accepted])
 	if @project.save
 		#flash.now[:notice]="Project has been saved to database"
 		redirect_to projects_path, notice: "Project has been saved to database"
@@ -47,7 +49,7 @@ def edit
 end
 
 def update  
-		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status])
+		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status, :terms_accepted])
 			#flash.now[:notice]="Project has been updated"
 			redirect_to projects_path, notice: "Project has been updated"
 
@@ -79,6 +81,14 @@ def favorites
 end
 
 private
+#pints to console the ids of project loaded
+def print_to_console
+	@project = Project.find(params[:id])
+	Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+	Rails.logger.info @project.id
+	Rails.logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+end
+
 
 def set_project
 	@project = Project.find(params[:id])
