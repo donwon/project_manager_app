@@ -2,7 +2,30 @@
 <p>Project Name: <%= @project.title %></p>
 <p>Client Name: <%= @project.client_name %></p>
 <p>Description:</p>
+
 <p><%= @project.description %></p>
 <p>Status: <%= @project.status %></p>
+
 <%= link_to 'Project Database Home', projects_path, class: "btn btn-primary" %>
 <%= link_to 'Edit Project', edit_project_path, class: "btn btn-primary" %>
+<hr>
+
+<h1>Tasks</h1>
+
+<% @project.tasks.each do |t| %>
+<%= t.body %>
+<hr>
+<%end%>
+
+<%= form_for [@project, @task] do |f| %>
+
+
+
+<div class="form-group">
+  <%= f.label :body, "ADD A TASK" %>
+  <%= f.text_area :body, class: "form-control"%>
+</div>
+<%= f.submit class: "btn btn-primary" %>
+<%end%>
+
+

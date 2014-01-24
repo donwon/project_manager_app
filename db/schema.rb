@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121013532) do
+ActiveRecord::Schema.define(version: 20140124044519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,26 @@ ActiveRecord::Schema.define(version: 20140121013532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.integer  "hit_counter", default: 0
+    t.integer  "hit_counter",    default: 0
+    t.boolean  "terms_accepted", default: false
   end
+
+  create_table "replies", force: true do |t|
+    t.text     "body"
+    t.integer  "discussion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "replies", ["discussion_id"], name: "index_replies_on_discussion_id", using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.text     "body"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
 end

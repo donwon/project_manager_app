@@ -9,7 +9,7 @@ def index
 	#puts Project.hash_example
 	#Project.generate_random_project(5)
 	@projects_recent = Project.order("created_at DESC")[0..2]
-	@projects_by_hits = Project.order("hit_counter DESC")
+	@projects_by_hits = Project.x_most_recent(15)
 
 	#find the id's of recent projects and save it to variable
 	recent_ids = []
@@ -44,6 +44,7 @@ end
 def show
  @project.hit_counter += 1
  @project.save
+ @task = Task.new
 end
 
 def edit

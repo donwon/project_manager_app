@@ -1,11 +1,17 @@
 class Project < ActiveRecord::Base
-
+  has_many :tasks
   attr_accessor :terms_accepted
 
   validates :title, presence:true, length: {minimum:10}
   validates :project_no, numericality: true, allow_nil: true
   #validates :terms_accepted, acceptance: {accept: 1}#, allow_nil:false
   validates_acceptance_of :terms_accepted
+
+  #Scope that orders projects by hit count
+  scope :order_by_hits, -> { order("hit_counter DESC") } #doesnt expect pipes
+  scope :x_most_recent, lambda { |max| order("created_at DESC").limit(max) }
+  scope :test, Proc.new { |max| order("created_at DESC").limit(max) }
+  #proc will short circuit app.
 
 
   #Method that returns a list of Question records that has a title size greater than 30 characters

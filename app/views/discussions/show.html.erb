@@ -6,3 +6,19 @@
 
 <%= link_to "Edit", edit_discussion_path %>
 <%= link_to "Discussions", discussions_path %>
+
+<h1>Replies</h1>
+<% @discussion.replies.each do |r| %>
+<%= r.body %>
+<hr>
+<% end %>
+
+<%= form_for [@discussion, @reply] do |f| %>
+<div class = "form-group">
+  <%= f.label :body, "Post a reply" %>
+  <%= f.text_area :body, class: "form-control"%>
+</div>
+<%= f.submit class: "btn btn-primary" %>
+<% end %>
+
+

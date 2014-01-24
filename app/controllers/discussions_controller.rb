@@ -8,6 +8,8 @@ def index
 
 end
 
+
+
 def new
 	@discussion = Discussion.new
 end
@@ -26,6 +28,10 @@ end
 def show
 	#@discussion = Discussion.find(params[:id])
 	#session[:project_ids] = params[:id]
+	#show replies by initializeing @replies
+	#@replies = Reply.all
+	@reply = Reply.new 
+
 end
 
 def edit
