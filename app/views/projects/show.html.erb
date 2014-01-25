@@ -1,31 +1,53 @@
 <h1><b>Project Number:</b> <%= @project.project_no %></h1>
-<p>Project Name: <%= @project.title %></p>
-<p>Client Name: <%= @project.client_name %></p>
-<p>Description:</p>
 
-<p><%= @project.description %></p>
-<p>Status: <%= @project.status %></p>
+        <p>Project Name: <%= @project.title %></p>
+        <p>Client Name: <%= @project.client_name %></p>
+        <p>Description:</p>
 
-<%= link_to 'Project Database Home', projects_path, class: "btn btn-primary" %>
-<%= link_to 'Edit Project', edit_project_path, class: "btn btn-primary" %>
-<hr>
+        <p><%= @project.description %></p>
+        <p>Status: <%= @project.status %></p>
 
-<h1>Tasks</h1>
+        <%= link_to 'Project Database Home', projects_path, class: "btn btn-primary" %>
+        <%= link_to 'Edit Project', edit_project_path(@project.id), class: "btn btn-primary" %>
+        <hr>
+   
 
-<% @project.tasks.each do |t| %>
-<%= t.body %>
-<hr>
-<%end%>
+
+     
+          <h1>Tasks</h1>
+
+    <% @project.tasks.each do |t| %>
+    
+    <p><%= t.body %></p>
+    <p><b>Due Date: </b> <%= t.due_date %> | <b>Completed Date: </b> <%= t.date_completed %></p>
+    <%= link_to "Delete", project_task_path(@project, t), method: :delete %>
+ 
+
+  <hr>
+
+
+  <%end%>
 
 <%= form_for [@project, @task] do |f| %>
 
-
-
 <div class="form-group">
-  <%= f.label :body, "ADD A TASK" %>
-  <%= f.text_area :body, class: "form-control"%>
-</div>
-<%= f.submit class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :body, "ADD A TASK" %>
+    </div>
+    <div class="col-md-4">  
+      <%= f.label :due_date%>
+      <%= f.date_field :due_date %>
+    </div>
+   
+    <div class="col-md-4">  
+      <%= f.label :date_completed%>
+      <%= f.date_field :date_completed %>
+    </div>
+      <%= f.text_area :body, class: "form-control"%>    
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
 <%end%>
+</div>
 
 

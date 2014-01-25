@@ -3,6 +3,9 @@
 
 <p>Title <%= @discussion.title %><p/>
 <p>Body <%= @discussion.body %></p>
+<p>Due Date <%= @discussion.due_date %></p>
+<p>Completed Date <%= @discussion.completed_date %></p>
+
 
 <%= link_to "Edit", edit_discussion_path %>
 <%= link_to "Discussions", discussions_path %>
@@ -17,6 +20,7 @@
 <div class = "form-group">
   <%= f.label :body, "Post a reply" %>
   <%= f.text_area :body, class: "form-control"%>
+
 </div>
 <%= f.submit class: "btn btn-primary" %>
 <% end %>

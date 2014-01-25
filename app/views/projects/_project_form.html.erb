@@ -1,11 +1,11 @@
 <%= form_for @project do |f| %>
 
 <% if @project.errors.any? %>
-<ul> 
-  <% @project.errors.full_messages.each do |msg| %>
-  <li><font color = "red" ><%= msg %></font></li>
-  <%end%>
-</ul>
+  <ul> 
+      <% @project.errors.full_messages.each do |msg| %>
+      <li><font color = "red" ><%= msg %></font></li>
+      <%end%>
+  </ul>
 <%end%>
 
 

@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
 
 before_action :require_login, only:[:new, :edit,:update, :create]
 before_action :print_to_console, except: [:index , :new, :create] 
-
 before_action :set_project, only: [:show, :edit, :update]
 
 def index
@@ -84,6 +83,8 @@ def favorites
 end
 
 private
+
+
 
 def require_login
 	if session[:logged_in?] == false

@@ -20,15 +20,15 @@
     <tr>
       <td><%= project.project_no %></td>
       <td><%= project.client_name %></td>
-      <td><%= project.title %></td>
-      <td><%= project.description.truncate(140) %></td>
+      <td><%= project.title.truncate(20) %></td>
+      <td><%= truncate_text(project.description) %></td>
       <td><%= project.status %></td>
       <td><%= project.hit_counter %></td>
 
       <td><%= link_to "Edit", edit_project_path(project)%></td>
       <td><%= link_to "Show", project_path(project) %></td>
       
-       <% end %>
+<% end %>
 
           </tbody>
 </table>

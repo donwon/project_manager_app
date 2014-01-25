@@ -13,6 +13,12 @@ class Project < ActiveRecord::Base
   scope :test, Proc.new { |max| order("created_at DESC").limit(max) }
   #proc will short circuit app.
 
+  #before_save :capitalize_title #will do this for both create & update
+  before_create :capitalize_title
+
+  #after_commit is better to use.
+  #after_save :print_msg_after_save
+  after_commit :print_msg_after_save
 
   #Method that returns a list of Question records that has a title size greater than 30 characters
     def self.long_titled
@@ -41,6 +47,16 @@ class Project < ActiveRecord::Base
           #end
       new_hash
     end
+
+private
+def capitalize_title
+  self.title.capitalize!
+end
+
+def print_msg_after_save
+  Rails.logger.info "after save"
+end
+
 
 
 end

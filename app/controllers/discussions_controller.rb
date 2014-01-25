@@ -39,17 +39,15 @@ def edit
 end
 
 def update
-	
-	# discussion.title = params[:discussion][:title]
-	# discussion.body = params[:discussion][:body]
-	@discussion.update_attributes params.require(:discussion).permit([:title,:body])
-	if @discussion.save
-		redirect_to discussions_path, notice: "Update Success"
-	else
+		# discussion.title = params[:discussion][:title]
+		# discussion.body = params[:discussion][:body]
+		@discussion.update_attributes params.require(:discussion).permit([:title,:body])
+		if @discussion.save
+			redirect_to discussions_path, notice: "Update Success"
+		else
 		flash.now[:alert] = "Error updating records"
 		render :edit
-	end
-
+		end
 end
 
 def destroy
