@@ -51,7 +51,7 @@ def edit
 end
 
 def update  
-		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status, :terms_accepted])
+		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status, :terms_accepted, :category_ids])
 			#flash.now[:notice]="Project has been updated"
 			redirect_to projects_path, notice: "Project has been updated"
 

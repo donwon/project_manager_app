@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
   has_many :tasks
+  has_many :categorizations, dependent: :destroy
+  has_many :categories, through: :categorizations
   attr_accessor :terms_accepted
 
   validates :title, presence:true, length: {minimum:10}

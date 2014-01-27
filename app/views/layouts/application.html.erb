@@ -9,7 +9,7 @@
 </head>
 
 
-<body>
+<body class="white-background">
   <%= render 'layouts/header' %>
  
   <% if flash[:alert] %> 
@@ -21,6 +21,7 @@
   <% end %>
 
 
+  
  <div class = "container">
 <%= yield %>
 <%= render "layouts/footer" %>

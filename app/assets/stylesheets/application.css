@@ -13,6 +13,10 @@
  */
 
 /* universal */
+
+.white-background {
+  background-color: white;
+}
 #nav_ul li{
   display: inline-block;
 }
