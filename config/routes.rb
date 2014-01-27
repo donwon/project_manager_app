@@ -20,6 +20,8 @@ ProjectManagerApp::Application.routes.draw do
     get :logout, on: :collection
   end
 
+  get 'comic' => 'comic#index'
+  get 'comic/1' => 'comic#index'
 
 
 

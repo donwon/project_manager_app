@@ -11,5 +11,6 @@ end
 def logout
   session[:logged_in?] = false
   redirect_to root_path, notice: "You have successfully logged out"
+
 end
 end
