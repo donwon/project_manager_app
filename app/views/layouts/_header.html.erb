@@ -1,22 +1,28 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "Don's Project Database", '#', id: "logo" %>
+          <%= link_to "Don's Code</>Core Portfolio", '#', id: "logo" %>
           <nav>
             <ul class="nav pull-right" id="nav_ul">
-              <li><%= link_to "Home",    projects_path %></li>
-              <li><%= link_to "Help",    '#' %></li>
+              <span class="top-right-icons">
+              <li><%= link_to '<i class="fa fa-home fa-2x"></i>'.html_safe,  '/' %></li>
+              <li><%= link_to '<i class="fa fa-info-circle fa-2x"></i>'.html_safe,    '#' %></li>
+              <li>
+                
+                <i class="fa fa-instagram fa-2x"></i>
+                <i class="fa fa-facebook-square fa-2x"></i>
+                <i class="fa fa-linkedin-square fa-2x"></i>
+                <i class="fa fa-google-plus-square fa-2x"></i>
+                <i class="fa fa-twitter-square fa-2x"></i>
+              </li>
 
 
               <% if session[:logged_in?] == false %>
-              <li><%= link_to "Sign in", login_users_path %></li>
+              <li id="log-in-red"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, login_users_path %></li>
               <% else %>
-              <li><%= link_to "Log Out", logout_users_path %></li>
+              <li id="log-off-green"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, logout_users_path %></li>
               <% end %>
-
-
-
-
+              </span>
             </ul>
           </nav>
         </div>

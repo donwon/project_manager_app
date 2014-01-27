@@ -5,7 +5,6 @@ before_action :set_discussion, only: [:show, :edit,:update, :flag]
 def index
 	@dicussions = Discussion.all
 	#Rails.logger.info session[:project_ids]
-
 end
 
 

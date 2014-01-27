@@ -10,5 +10,65 @@
  *
  *= require_self
  *= require_tree .
- *= require bootstrap-datepicker
  */
+
+/* universal */
+#nav_ul li{
+  display: inline-block;
+}
+
+.fa:hover {color: red;}
+
+ .top-right-icons {
+   /* width: 100%;
+    background-color: #3b5c8a;*/
+    text-align: right;
+    float:right;
+}
+
+.top-right-icons i{
+    margin-right:10px;
+    color: #b1c7e5;
+  }
+
+#log-off-green i{
+  color: #90ff00;
+}
+
+#log-in-red i{
+  color:red;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: gray;
+    text-decoration: none;
+  }
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
