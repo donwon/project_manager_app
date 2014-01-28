@@ -1,9 +1,14 @@
 ProjectManagerApp::Application.routes.draw do
 
+  devise_for :users
   resources :projects do
     get :favorites, on: :collection
 
     resources :tasks
+
+    post 'vote_up' => 'votes#vote_up'
+    post 'vote_down' => 'votes#vote_down'
+    delete 'vote_delete' => 'vote#votes_delete'
 
   end
 
@@ -15,10 +20,14 @@ ProjectManagerApp::Application.routes.draw do
 
   end
 
-  resources :users do
-    get :login, on: :collection
-    get :logout, on: :collection
-  end
+
+
+
+  #this was for temp log in
+  # resources :users do
+  #   get :login, on: :collection
+  #   get :logout, on: :collection
+  # end
 
   get 'comic' => 'comic#index'
   get 'comic/1' => 'comic#index'

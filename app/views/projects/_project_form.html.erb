@@ -32,15 +32,15 @@
 
   <div class="field">
 
-    <ul>
+    
       <% hidden_field_tag "project[category_ids][]", nil %>
       <% Category.all.each do |c| %>
-      <li>
-        <%= check_box_tag "project[category_ids][]", c.id, @project.categories.include?(c), id: dom_id(c) %>
+      
+        <%= check_box_tag "project[category_ids][]", c.id, @project.categories.include?(c.id), id: dom_id(c) %>
         <%= label_tag dom_id(c), c.name %>
-      </li>
+      
       <%end%>
-    </ul>
+    
 
   </div>
 

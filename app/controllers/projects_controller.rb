@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
-
-before_action :require_login, only:[:new, :edit,:update, :create]
-before_action :print_to_console, except: [:index , :new, :create] 
-before_action :set_project, only: [:show, :edit, :update]
+before_action :authenticate_user!, except: [:index, :show]
+#before_action :require_login, only:[:new, :edit,:update, :create]
+#before_action :print_to_console, except: [:index , :new, :create] 
+before_action :set_project_current_user, only: [:edit, :update]
 
 def index
 	#puts Project.hash_example
@@ -28,7 +28,7 @@ end
 
 def create
 	
-	@project = Project.new params.require(:project).permit([:project_no, :client_name, :title, :description, :status, :terms_accepted])
+	@project = Project.new project_params
 	if @project.save
 		#flash.now[:notice]="Project has been saved to database"
 		redirect_to projects_path, notice: "Project has been saved to database"
@@ -41,6 +41,7 @@ def create
 end
 
 def show
+	@project = Project.find(params[:id])
  @project.hit_counter += 1
  @project.save
  @task = Task.new
@@ -51,7 +52,7 @@ def edit
 end
 
 def update  
-		if @project.update_attributes params.require(:project).permit([:project_no, :client_name,:title,:description, :status, :terms_accepted, :category_ids])
+		if @project.update_attributes project_params
 			#flash.now[:notice]="Project has been updated"
 			redirect_to projects_path, notice: "Project has been updated"
 
@@ -84,13 +85,17 @@ end
 
 private
 
+def project_params
+	params.require(:project).permit([:project_no, :client_name, :title, :description, :status, :terms_accepted, :category_ids])
 
-
-def require_login
-	if session[:logged_in?] == false
-	redirect_to projects_path, alert: "You Must Log in to Add/Modify Projects, feel free to post a Discussion"
-	end
 end
+
+
+# def require_login
+# 	if session[:logged_in?] == false
+# 	redirect_to projects_path, alert: "You Must Log in to Add/Modify Projects, feel free to post a Discussion"
+# 	end
+# end
 
 
 #pints to console the ids of project loaded
@@ -102,9 +107,39 @@ def print_to_console
 end
 
 
-def set_project
+def set_project_current_user
 	@project = Project.find(params[:id])
 end
 
 
 end
+
+
+
+
+
+
+# class UsersController < ApplicationController
+
+# def login
+
+#   session[:logged_in?] = true
+#   puts session[:logged_in?]
+#   redirect_to root_path, notice: "You are now signed in"
+
+# end
+
+# def logout
+#   session[:logged_in?] = false
+#   flash[:message]="You have signed out"
+#   redirect_to root_path
+
+# end
+# end
+
+
+
+
+
+
+

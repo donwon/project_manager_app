@@ -8,12 +8,14 @@
     </tr>
     
   </thead>
+    
     <th>Project Number</th>
     <th>Client Name</th>
     <th>Project Name</th>
     <th>Project Description</th>
     <th>Project Status</th>
     <th>View Count</th>
+    <th>Votes</th>
 
 <% @create_project_table.each do |project| %>
 
@@ -24,6 +26,11 @@
       <td><%= truncate_text(project.description) %></td>
       <td><%= project.status %></td>
       <td><%= project.hit_counter %></td>
+      <td>$nbsp</td>
+
+
+      <td><%= link_to "Vote up", project_vote_up_path(project), method: :post%></td>
+      <td><%= link_to "Vote down", project_vote_down_path(project), method: :post %></td> 
 
       <td><%= link_to "Edit", edit_project_path(project)%></td>
       <td><%= link_to "Show", project_path(project) %></td>

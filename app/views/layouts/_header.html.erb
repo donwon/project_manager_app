@@ -17,10 +17,10 @@
               </li>
 
 
-              <% if session[:logged_in?] == false %>
-              <li id="log-in-red"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, login_users_path %></li>
+              <% if user_signed_in? == false %>
+              <li id="log-in-red"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, new_user_session_path %></li>
               <% else %>
-              <li id="log-off-green"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, logout_users_path %></li>
+              <li id="log-off-green"><%= link_to '<i class="fa fa-power-off fa-3x"></i>'.html_safe, destroy_user_session_path, method: :delete %></li>
               <% end %>
               </span>
             </ul>
