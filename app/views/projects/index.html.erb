@@ -8,15 +8,16 @@ Database Management App </h3>
 		<% @create_project_table = @projects_recent %>
 		<%= render "project_table" %>
 
+<h2><font color = "blue"> Order by Votes </font></h3>
+
+    <% @create_project_table = @projects_by_votes %>
+    <%= render "project_table" %>
 
 <h2><font color = "blue"> Ordered by View Count</font></h2>
 		<% @create_project_table = @projects_left_over.each %>
 		<%= render "project_table" %>
 
-<h2><font color = "blue"> long titled projects </font></h3>
 
-		<% @create_project_table = @projects_w_long_title %>
-		<%= render "project_table" %>
 		
 
 

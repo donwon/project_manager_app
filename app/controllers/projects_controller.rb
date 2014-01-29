@@ -8,7 +8,8 @@ def index
 	#puts Project.hash_example
 	#Project.generate_random_project(5)
 	@projects_recent = Project.order("created_at DESC")[0..2]
-	@projects_by_hits = Project.x_most_recent(15)
+	@projects_by_hits = Project.x_most_recent(5)
+	@projects_by_votes = Project.x_by_votes(5)
 
 	#find the id's of recent projects and save it to variable
 	recent_ids = []

@@ -23,6 +23,7 @@ class Project < ActiveRecord::Base
   scope :order_by_hits, -> { order("hit_counter DESC") } #doesnt expect pipes
   scope :x_most_recent, lambda { |max| order("created_at DESC").limit(max) }
   scope :test, Proc.new { |max| order("created_at DESC").limit(max) }
+  scope :x_by_votes, lambda { |max| order("score DESC").limit(max) }
   #proc will short circuit app.
 
   #before_save :capitalize_title #will do this for both create & update
