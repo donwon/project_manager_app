@@ -5,7 +5,12 @@ class Project < ActiveRecord::Base
   
   #For creating voting relationships
   has_many :votes
-  has_many :voters, through: :votes, source: :user
+  has_many :up_voters, through: :votes, source: :user
+
+  has_many :vote_downs
+  has_many :down_voters, through: :vote_downs, source: :user
+
+
 
   attr_accessor :terms_accepted
 
@@ -26,6 +31,33 @@ class Project < ActiveRecord::Base
   #after_commit is better to use.
   #after_save :print_msg_after_save
   after_commit :print_msg_after_save
+
+# def vote_up_by user
+
+#   up_voters << user && increment_votes(1)
+
+# end
+
+# def vote_down_by user
+
+#   down_voters << user && increment_votes(-1)
+
+# end
+
+# def votes_delete_by user
+#   up_voters.delete(user)
+#   down_voters.delete(user)
+# end
+
+# def increment_votes value
+#   @project.score += value
+#   save
+
+# end
+
+
+
+
 
   #Method that returns a list of Question records that has a title size greater than 30 characters
     def self.long_titled

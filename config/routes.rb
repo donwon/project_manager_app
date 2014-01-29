@@ -8,7 +8,8 @@ ProjectManagerApp::Application.routes.draw do
 
     post 'vote_up' => 'votes#vote_up'
     post 'vote_down' => 'votes#vote_down'
-    delete 'vote_delete' => 'vote#votes_delete'
+    delete 'vote_delete' => 'votes#votes_delete'
+    delete 'votedown_delete' => 'votes#votedown_delete'
 
   end
 

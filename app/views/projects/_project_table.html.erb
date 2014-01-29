@@ -15,7 +15,7 @@
     <th>Project Description</th>
     <th>Project Status</th>
     <th>View Count</th>
-    <th>Votes</th>
+    <th>Vote Score</th>
 
 <% @create_project_table.each do |project| %>
 
@@ -26,11 +26,21 @@
       <td><%= truncate_text(project.description) %></td>
       <td><%= project.status %></td>
       <td><%= project.hit_counter %></td>
-      <td>$nbsp</td>
+      <td><%= project.score %></td>
 
+      <% if project.up_voters.include?(current_user) %>
+      <td>"Voted up"</td>
+      <td><%= link_to "Withdraw Vote", project_vote_delete_path(project), method: :delete %></td> 
 
+      <% elsif project.down_voters.include?(current_user) %>
+      <td><%= link_to "Withdraw Vote", project_votedown_delete_path(project), method: :delete%></td>
+      <td>"Voted down"</td> 
+
+      <% else %>
       <td><%= link_to "Vote up", project_vote_up_path(project), method: :post%></td>
       <td><%= link_to "Vote down", project_vote_down_path(project), method: :post %></td> 
+
+      <%end%>
 
       <td><%= link_to "Edit", edit_project_path(project)%></td>
       <td><%= link_to "Show", project_path(project) %></td>

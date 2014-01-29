@@ -1,4 +1,4 @@
-class Vote < ActiveRecord::Base
+class VoteDown < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 end

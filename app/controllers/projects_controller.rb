@@ -42,9 +42,9 @@ end
 
 def show
 	@project = Project.find(params[:id])
- @project.hit_counter += 1
- @project.save
- @task = Task.new
+ 	@project.hit_counter += 1
+ 	@project.save
+ 	@task = Task.new
 end
 
 def edit
